@@ -172,7 +172,7 @@ function BookingCreateContent() {
       {/* Back button */}
       <button
         onClick={() => router.push('/packages')}
-        className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-gray-900 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Packages
@@ -183,37 +183,37 @@ function BookingCreateContent() {
         <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm space-y-6">
           <div className="flex items-center justify-between border-b border-gray-50 pb-5">
             <div>
-              <h2 className="text-2xl font-extrabold text-gray-900">Review Reservation</h2>
-              <p className="text-sm text-gray-400 mt-1">Please confirm details to establish your booking lock hold.</p>
+              <h2 className="text-2xl font-extrabold text-gray-900 font-serif-elegant">Review Reservation</h2>
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-1">Check details to secure your booking lock.</p>
             </div>
             {pkg.flashSale?.isActive && (
-              <span className="flex items-center gap-1 px-3 py-1 bg-red-50 text-red-600 font-bold text-xs rounded-full border border-red-100 animate-pulse">
+              <span className="flex items-center gap-1 px-3 py-1.5 bg-red-50 text-red-600 font-black text-[10px] tracking-wider rounded-full border border-red-100 animate-pulse uppercase">
                 <Zap className="h-3.5 w-3.5 fill-red-600" />
-                Flash Sale Price Active
+                Flash Deal Active
               </span>
             )}
           </div>
 
           <div className="space-y-4">
-            <div className="p-4 bg-gray-50/50 rounded-2xl border border-gray-100">
-              <h3 className="font-bold text-gray-900 text-lg">{pkg.title}</h3>
-              <p className="text-sm text-gray-500 mt-1 leading-relaxed">{pkg.description}</p>
+            <div className="p-5 bg-gray-50/50 rounded-2xl border border-gray-100/50">
+              <h3 className="font-bold text-gray-900 text-lg font-serif-elegant">{pkg.title}</h3>
+              <p className="text-xs text-gray-500 font-medium mt-1 leading-relaxed">{pkg.description}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 border border-gray-100 rounded-2xl text-center">
-                <span className="text-xs text-gray-400 block font-medium">Allotment Price</span>
-                <span className="text-2xl font-extrabold text-blue-600 mt-1 block">${pkg.price}</span>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Allotment Price</span>
+                <span className="text-2xl font-extrabold text-orange-600 mt-1 block">${pkg.price}</span>
               </div>
               <div className="p-4 border border-gray-100 rounded-2xl text-center">
-                <span className="text-xs text-gray-400 block font-medium">Hold Duration</span>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Hold Duration</span>
                 <span className="text-2xl font-extrabold text-gray-900 mt-1 block">10 Minutes</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-start gap-2.5 p-4 bg-blue-50 text-blue-800 rounded-2xl text-sm border border-blue-100/50">
-            <ShieldCheck className="h-5 w-5 shrink-0 text-blue-600" />
+          <div className="flex items-start gap-2.5 p-4 bg-orange-50/50 text-orange-800 rounded-2xl text-xs border border-orange-100/50 font-medium">
+            <ShieldCheck className="h-5 w-5 shrink-0 text-orange-600" />
             <p className="leading-normal">
               Upon clicking the button, a temporary <strong>10-minute hold</strong> is secured in our high-concurrency Redis lock registry. You must finish the payment checkout before this counter expires to verify your purchase.
             </p>
@@ -221,7 +221,7 @@ function BookingCreateContent() {
 
           <button
             onClick={handlePlaceHold}
-            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-2xl shadow-lg shadow-blue-200 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="w-full py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-widest rounded-2xl shadow-lg shadow-orange-100 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             Confirm & Lock Reservation Allotment
           </button>
@@ -235,16 +235,16 @@ function BookingCreateContent() {
                 <CheckCircle2 className="h-6 w-6" />
               </div>
               <div>
-                <h2 className="text-2xl font-extrabold text-gray-900">Hold Secured Successfully</h2>
-                <p className="text-xs text-gray-400 mt-0.5">Booking ID: {bookingResponse.bookingId}</p>
+                <h2 className="text-2xl font-extrabold text-gray-900 font-serif-elegant">Hold Secured Successfully</h2>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">Booking ID: {bookingResponse.bookingId}</p>
               </div>
             </div>
 
-            <div className="p-4 bg-amber-50 text-amber-800 rounded-2xl border border-amber-100/60 text-sm flex items-start gap-3">
+            <div className="p-4 bg-amber-50 text-amber-800 rounded-2xl border border-amber-100/60 text-xs flex items-start gap-3 font-semibold">
               <Calendar className="h-5 w-5 shrink-0 text-amber-600 mt-0.5" />
               <div>
-                <p className="font-semibold">Allotment expiry countdown active!</p>
-                <p className="mt-0.5 text-xs text-amber-700 leading-normal">
+                <p className="font-extrabold uppercase tracking-wide">Allotment expiry countdown active!</p>
+                <p className="mt-0.5 text-amber-700 leading-normal font-medium">
                   Your reservation hold is locked in Redis. Complete the checkout verification. Hold expires on:{' '}
                   <strong>{new Date(bookingResponse.holdExpiresAt).toLocaleTimeString()}</strong>.
                 </p>
@@ -253,19 +253,19 @@ function BookingCreateContent() {
 
             {/* Simulated Payment Trigger box */}
             <div className="border border-gray-100 rounded-2xl p-6 bg-gray-50/50 space-y-4">
-              <h3 className="font-bold text-gray-900 text-sm flex items-center gap-1.5 uppercase tracking-wide">
-                <CreditCard className="h-4 w-4 text-blue-600" />
+              <h3 className="font-bold text-gray-900 text-xs flex items-center gap-1.5 uppercase tracking-wider">
+                <CreditCard className="h-4 w-4 text-orange-600" />
                 Mock Stripe Payment Integration
               </h3>
-              <p className="text-xs text-gray-500 leading-normal">
+              <p className="text-xs text-gray-500 leading-normal font-medium">
                 Normally, the Stripe gateway communicates with your backend webhook asynchronously upon checkout completion. You can simulate that exact payment webhook callback below.
               </p>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => handleSimulatePayment(false)}
                   disabled={paying || paymentSuccess}
-                  className="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-green-100 disabled:opacity-50 cursor-pointer"
+                  className="flex-1 py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-green-100 disabled:opacity-50 cursor-pointer"
                 >
                   {paying ? 'Processing...' : 'Trigger Succeeded Webhook'}
                 </button>
@@ -273,7 +273,7 @@ function BookingCreateContent() {
                 <button
                   onClick={() => handleSimulatePayment(true)}
                   disabled={paying || !paymentSuccess}
-                  className="px-4 py-3 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-sm rounded-xl transition-all disabled:opacity-50 flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-3.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-xs uppercase tracking-wider rounded-xl transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 cursor-pointer"
                   title="Test webhook idempotency checks by firing the same event payload again"
                 >
                   <RefreshCw className="h-4 w-4" />
@@ -285,7 +285,7 @@ function BookingCreateContent() {
             {/* Webhook log logger details */}
             {paymentLog.length > 0 && (
               <div className="bg-gray-900 rounded-2xl p-4 text-xs font-mono text-gray-300 space-y-1 overflow-x-auto shadow-inner">
-                <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-2">Transaction Webhook Logs:</p>
+                <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mb-2">Transaction Webhook Logs:</p>
                 {paymentLog.map((log, index) => (
                   <p key={index}>{log}</p>
                 ))}
@@ -293,12 +293,12 @@ function BookingCreateContent() {
             )}
 
             {paymentSuccess && (
-              <div className="flex flex-col items-center justify-center p-4 bg-green-50 rounded-2xl border border-green-100 text-center">
-                <p className="font-bold text-green-800">Booking Confirmed!</p>
-                <p className="text-xs text-green-600 mt-1">Payment verified. You can now view your bookings dashboard.</p>
+              <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-2xl border border-green-100 text-center">
+                <p className="font-extrabold text-green-800 uppercase text-sm tracking-wider">Booking Confirmed!</p>
+                <p className="text-xs text-green-600 mt-1 font-medium">Payment verified. You can now view your bookings dashboard.</p>
                 <button
                   onClick={() => router.push('/my-bookings')}
-                  className="mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow transition-colors cursor-pointer"
+                  className="mt-4 px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-orange-100 transition-all cursor-pointer"
                 >
                   Go to My Bookings
                 </button>

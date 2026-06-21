@@ -32,14 +32,16 @@ const authSlice = createSlice({
   initialState: getInitialState(),
   reducers: {
     setCredentials: (state, action) => {
-      const { user, token } = action.payload;
+      const { user, token, accessToken } = action.payload;
+      const finalToken = token || accessToken;
+      
       state.user = user;
       state.role = user?.role || 'user';
-      state.token = token;
-      state.isAuthenticated = !!token;
+      state.token = finalToken;
+      state.isAuthenticated = !!finalToken;
 
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('token', token);
+      if (typeof window !== 'undefined' && finalToken) {
+        localStorage.setItem('token', finalToken);
         localStorage.setItem('user', JSON.stringify(user));
       }
     },

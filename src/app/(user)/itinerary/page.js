@@ -96,20 +96,20 @@ export default function ItineraryPage() {
         <div className="space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-5">
             <div>
-              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
-                <Sparkles className="h-8 w-8 text-blue-600 fill-blue-50/50" />
-                AI Itinerary Recommender
+              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2 font-serif-elegant">
+                <Sparkles className="h-8 w-8 text-orange-500 fill-orange-50/50" />
+                AI Itinerary Planner
               </h1>
-              <p className="text-sm text-gray-400 mt-1">Get customized, high-speed itinerary recommendations for your paid trips.</p>
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-1">Get customized, high-speed itinerary recommendations for your paid trips.</p>
             </div>
 
             {confirmedBookings.length > 0 && (
               <div className="w-full md:w-64">
-                <label className="block text-[10px] font-bold text-gray-400 uppercase mb-1">Select Destination:</label>
+                <label className="block text-[10px] font-extrabold text-gray-400 uppercase tracking-wider mb-1.5 pl-0.5">Select Destination:</label>
                 <select
                   value={selectedBooking}
                   onChange={handlePackageChange}
-                  className="block w-full px-3.5 py-2.5 bg-white border border-gray-200 focus:border-blue-500 rounded-xl text-sm focus:outline-none transition-colors cursor-pointer"
+                  className="block w-full px-3.5 py-2.5 bg-white border border-gray-200 focus:border-orange-500 rounded-xl text-xs font-bold focus:outline-none transition-colors cursor-pointer"
                 >
                   {confirmedBookings.map((b) => (
                     <option key={b._id} value={b.packageId}>
@@ -139,8 +139,8 @@ export default function ItineraryPage() {
                 <div className="flex flex-col items-center justify-center py-20 bg-white border border-gray-100 rounded-3xl p-8 text-center space-y-4">
                   <LoadingSpinner size="lg" />
                   <div>
-                    <p className="font-bold text-gray-900">Synthesizing AI Itinerary planner...</p>
-                    <p className="text-xs text-gray-400 mt-1">Querying downstreams and seeding caching tables...</p>
+                    <p className="font-bold text-gray-900 font-serif-elegant">Synthesizing AI Itinerary planner...</p>
+                    <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-1">Querying downstreams and seeding caching tables...</p>
                   </div>
                 </div>
               ) : error ? (
@@ -157,14 +157,14 @@ export default function ItineraryPage() {
                   {/* Cache metrics banner */}
                   <div className="flex items-center justify-between bg-white border border-gray-100 p-4 rounded-2xl shadow-sm">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-400 font-semibold">Cache Performance Status:</span>
+                      <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">Cache Performance:</span>
                       {itinerary.source === 'CACHE_HIT' ? (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-green-50 text-green-700 font-bold text-[10px] rounded-full border border-green-100">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-green-50 text-green-700 font-black text-[9px] uppercase tracking-wider rounded-full border border-green-100">
                           <Zap className="h-3 w-3 fill-green-700" />
                           CACHE HIT (Instant)
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 text-blue-700 font-bold text-[10px] rounded-full border border-blue-100">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-orange-50 text-orange-700 font-black text-[9px] uppercase tracking-wider rounded-full border border-orange-100">
                           🤖 AI GENERATED (Cache Miss)
                         </span>
                       )}
@@ -186,16 +186,16 @@ export default function ItineraryPage() {
                         key={dayPlan.day}
                         className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col md:flex-row gap-6 items-start"
                       >
-                        <div className="h-12 w-12 bg-blue-600 text-white font-black text-lg rounded-2xl flex items-center justify-center shrink-0 shadow-md shadow-blue-100">
+                        <div className="h-12 w-12 bg-orange-500 text-white font-black text-lg rounded-2xl flex items-center justify-center shrink-0 shadow-md shadow-orange-100">
                           D{dayPlan.day}
                         </div>
                         
                         <div className="flex-1 space-y-3">
-                          <h3 className="text-lg font-bold text-gray-900 flex items-center gap-1.5">
-                            <MapPin className="h-4.5 w-4.5 text-blue-600" />
-                            Activity Outline
+                          <h3 className="text-lg font-bold text-gray-900 flex items-center gap-1.5 font-serif-elegant">
+                            <MapPin className="h-4.5 w-4.5 text-orange-500" />
+                            Day {dayPlan.day} Outline
                           </h3>
-                          <p className="text-sm text-gray-600 leading-relaxed">{dayPlan.activity}</p>
+                          <p className="text-xs text-gray-600 leading-relaxed font-semibold">{dayPlan.activity}</p>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                             {dayPlan.meals.length > 0 && (

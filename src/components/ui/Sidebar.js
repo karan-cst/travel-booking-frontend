@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSidebarCollapsed } from '@/store/slices/appSlice';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, BookOpen, Sparkles, LayoutDashboard, Database, X, ShieldAlert } from 'lucide-react';
+import { Compass, BookOpen, Sparkles, LayoutDashboard, Database, X } from 'lucide-react';
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -44,7 +44,7 @@ export default function Sidebar() {
       >
         {/* Header container */}
         <div className="flex h-16 items-center justify-between px-6 border-b border-gray-100 lg:hidden">
-          <span className="text-lg font-bold text-gray-950">RoamSync Menu</span>
+          <span className="text-lg font-bold text-gray-950 font-serif-elegant">RoamSync Menu</span>
           <button
             onClick={() => dispatch(setSidebarCollapsed(true))}
             className="p-1 text-gray-400 hover:text-gray-950 hover:bg-gray-50 rounded-lg"
@@ -56,12 +56,12 @@ export default function Sidebar() {
         {/* User context badge */}
         <div className="p-6 border-b border-gray-50">
           <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
-            <div className="h-10 w-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
+            <div className="h-10 w-10 bg-orange-500 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-sm">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold text-gray-950 truncate leading-4">{user?.name}</p>
-              <p className="text-[11px] text-gray-400 truncate capitalize mt-0.5">{role}</p>
+              <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-0.5">{role}</p>
             </div>
           </div>
         </div>
@@ -77,15 +77,15 @@ export default function Sidebar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => dispatch(setSidebarCollapsed(true))}
-                className={`group flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-xl transition-all ${
+                className={`group flex items-center gap-3 px-3.5 py-3 text-xs font-bold uppercase tracking-wider rounded-xl transition-all ${
                   isActive
-                    ? 'bg-blue-50/50 text-blue-600 font-semibold'
+                    ? 'bg-orange-50/50 text-orange-600'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-950'
                 }`}
               >
                 <Icon
                   className={`h-5 w-5 transition-transform group-hover:scale-105 ${
-                    isActive ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-950'
+                    isActive ? 'text-orange-600' : 'text-gray-400 group-hover:text-gray-950'
                   }`}
                 />
                 {link.name}
@@ -95,8 +95,8 @@ export default function Sidebar() {
         </nav>
 
         {/* Footer info box */}
-        <div className="p-6 border-t border-gray-50 text-[10px] text-gray-400 text-center">
-          &copy; 2026 RoamSync Booking.
+        <div className="p-6 border-t border-gray-50 text-[10px] text-gray-400 font-semibold text-center uppercase tracking-wider">
+          &copy; 2026 RoamSync.
         </div>
       </aside>
     </>

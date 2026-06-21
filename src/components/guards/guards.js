@@ -22,7 +22,8 @@ export function AuthGuard({ children }) {
     if (!checking) {
       const storedToken = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
       if (!isAuthenticated && !storedToken) {
-        router.push('/login');
+        const dest = window.location.pathname + window.location.search;
+        router.push(`/login?redirectTo=${encodeURIComponent(dest)}`);
       }
     }
   }, [isAuthenticated, checking, router]);
@@ -52,7 +53,8 @@ export function RoleGuard({ children, allowedRoles = [] }) {
   useEffect(() => {
     if (!checking) {
       if (!isAuthenticated) {
-        router.push('/login');
+        const dest = window.location.pathname + window.location.search;
+        router.push(`/login?redirectTo=${encodeURIComponent(dest)}`);
         return;
       }
       

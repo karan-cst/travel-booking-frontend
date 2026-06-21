@@ -6,7 +6,7 @@ import { RoleGuard } from '@/components/guards/guards';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import EmptyState from '@/components/ui/EmptyState';
-import { Shield, Users, Layers, Ticket, Zap, Database } from 'lucide-react';
+import { Shield, Layers, Ticket, Zap, Database } from 'lucide-react';
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState({
@@ -74,7 +74,7 @@ export default function AdminDashboardPage() {
       name: 'Total Tour Packages',
       value: stats.totalPackages,
       icon: Layers,
-      color: 'text-blue-600 bg-blue-50 border-blue-100',
+      color: 'text-orange-600 bg-orange-50 border-orange-100',
     },
     {
       name: 'Confirmed Bookings',
@@ -103,11 +103,11 @@ export default function AdminDashboardPage() {
           {/* Header section */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-5">
             <div>
-              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">
-                <Shield className="h-8 w-8 text-blue-600" />
+              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2 font-serif-elegant">
+                <Shield className="h-8 w-8 text-orange-500" />
                 Admin Operations Control
               </h1>
-              <p className="text-sm text-gray-400 mt-1">Real-time status counters for inventory releases and booking allotments.</p>
+              <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider mt-1">Real-time status counters for inventory releases and booking allotments.</p>
             </div>
           </div>
 
@@ -134,10 +134,10 @@ export default function AdminDashboardPage() {
                       className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow flex items-center justify-between"
                     >
                       <div className="space-y-1">
-                        <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider block">
+                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
                           {card.name}
                         </span>
-                        <span className="text-3xl font-black text-gray-900 block">
+                        <span className="text-3xl font-black text-gray-900 block font-serif-elegant">
                           {card.value}
                         </span>
                       </div>
@@ -151,20 +151,20 @@ export default function AdminDashboardPage() {
 
               {/* General Admin Welcome panel */}
               <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-950 mb-2">Operations Alert Warning</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                <h3 className="text-lg font-bold text-gray-955 mb-2 font-serif-elegant">Operations Alert Warning</h3>
+                <p className="text-xs text-gray-500 font-semibold leading-relaxed mb-4">
                   All active flash sales allotments are mapped synchronously to memory caches inside the Redis clusters. Ensure local worker threads are listening for expiry keyspaces to safely return allocation holds that fail to pay inside the 10-minute hold lock window.
                 </p>
                 <div className="flex gap-3">
                   <button
                     onClick={() => window.location.href = '/admin/bookings'}
-                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow cursor-pointer"
+                    className="px-4 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-orange-100 transition-all cursor-pointer"
                   >
                     Manage Database Bookings
                   </button>
                   <button
                     onClick={fetchStats}
-                    className="px-4 py-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-xs rounded-xl cursor-pointer"
+                    className="px-4 py-2.5 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer"
                   >
                     Refresh Counters
                   </button>
